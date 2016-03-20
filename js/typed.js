@@ -36,7 +36,7 @@
         this.options = $.extend({}, $.fn.typed.defaults, options);
 
         // attribute to type into
-        this.isInput = this.el.is('input');
+        this.isInput = this.el.is('input, textarea');
         this.attr = this.options.attr;
 
         // show cursor
@@ -111,6 +111,10 @@
 
                 // shuffle the array if true
                 if(self.shuffle) self.sequence = self.shuffleArray(self.sequence);
+
+                if (self.isInput) {
+                    self.el.focus();
+                }
 
                 // Start typing
                 self.typewrite(self.strings[self.sequence[self.arrayPos]], self.strPos);
